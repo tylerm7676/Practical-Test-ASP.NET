@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="col-md-8">
+
+@{
+    if (IsPost)
+    {
+        <h2>Enter a positive integer:</h2>
+        <form method="post" action="">
+            <input type="text" name="Input" value="" /><br /><br />
+            <input type="submit" class="btn btn-default" value="Submit" class="submit" />
+        </form>
+        string input = Request["Input"];
+        if (input == "")
+        {
+            <h2>Error. Nothing entered.</h2>
+        }
+        else
+        {
+            try
+            {
+                int inputInt = int.Parse(input);
+                if (inputInt == 0)
+                {
+                    <h2>Error. Entered zero.</h2>
+                }
+                else if (inputInt % 3 == 0 && inputInt % 5 == 0)
+                {
+                    <h2>Green Cloud</h2>
+                }
+                else if (inputInt % 3 == 0)
+                {
+                    <h2>Green</h2>
+                }
+                else if (inputInt % 5 == 0)
+                {
+                    <h2>Cloud</h2>
+                }
+                else if (inputInt < 0)
+                {
+                    <h2>Error. Entered negative integer.</h2>
+                }
+                else
+                {
+                    <h2>@inputInt</h2>
+                }
+            }
+            catch (FormatException)
+            {
+                <h2>Error. Entered string.</h2>
+            }
+            catch (OverflowException)
+            {
+                <h2>Error. Integer out of range.</h2>
+            }
+        }
+    }
+    else
+    {
+        <h2>Enter a positive integer:</h2>
+        <form method="post" action="">
+            <input type="text" name="Input" value="" /><br /><br />
+            <input type="submit" class="btn btn-default" value="Submit" class="submit" />
+        </form>
+    }
+}
+</div>
